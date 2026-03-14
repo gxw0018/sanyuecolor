@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料查看</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .download-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #333;
+        }
+        
+        .page-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .page-title p {
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .download-categories {
+            margin-bottom: 3rem;
+        }
+        
+        .category-title {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .download-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .download-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #1a365d;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .download-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+        
+        .download-info h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .download-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .download-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #0066cc;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #0052a3;
+        }
+        
+        .file-size {
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .download-page {
+                padding: 1rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于三越</a></li>
+                <li><a href="products.html">产品&服务</a></li>
+                <li><a href="news.html">新闻资讯</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    
+    <main class="download-page">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>资料查看</h1>
+                <p>Downloads</p>
+            </div>
+            <div class="logo">三越</div>
+        </div>
+        
+        <div class="download-categories">
+            <h2 class="category-title">产品手册</h2>
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
+                        </svg>
+                    </div>
+                    <div class="download-info">
+                        <h3>合成革用色浆</h3>
+                      
+                        <div class="download-meta">
+                            
+                            <a href="https://flbook.com.cn/c/fcECHBjYUr" class="download-btn">查看</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
+                        </svg>
+                    </div>
+                    <div class="download-info">
+                        <h3>涂料用色浆</h3>
+
+                        <div class="download-meta">
+                            
+                            <a href="https://flbook.com.cn/c/i8iRtTM1Qq" class="download-btn">查看</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
+                        </svg>
+                    </div>
+                    <div class="download-info">
+                        <h3>合成革用助剂</h3>
+                      
+                        <div class="download-meta">
+                           
+                            <a href="https://flbook.com.cn/c/jCg2ozNGeR" class="download-btn">查看</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-card">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
+                        </svg>
+                    </div>
+                    <div class="download-info">
+                        <h3>涂料用助剂</h3>
+                      
+                        <div class="download-meta">
+                           
+                            <a href="https://flbook.com.cn/c/QxeOT1Npkf" class="download-btn">查看</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-card">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
+                        </svg>
+                    </div>
+                    <div class="download-info">
+                        <h3>汽车革用色浆</h3>
+                      
+                        <div class="download-meta">
+                           
+                            <a href="https://flbook.com.cn/c/FbymHw9Ygk" class="download-btn">查看</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+       
+    </main>
+    
+    <!-- <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h4>三越</h4>
+                <p>为柔性材料打造创新可持续的特种涂料</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="about.html">关于三越</a>
+                <a href="products.html">产品&服务</a>
+                <a href="news.html">新闻资讯</a>
+                <a href="contact.html">联系我们</a>
+            </div>
+            <div class="footer-contact">
+                <h4>联系我们</h4>
+                <p>江西三越高新材料有限公司</p>
+                <p>地址：江西省吉安市永丰县工业西区</p>
+                <p>电话：0796-2272755</p>
+                <p>邮箱：19079640305@163.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 江西三越高新材料有限公司</p>
+            <p>赣ICP备2025057880号-2</p>
+        </div>
+    </footer> -->
+</body>
+</html>
