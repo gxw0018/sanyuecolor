@@ -39,91 +39,89 @@
             color: #333;
         }
         
-        .download-categories {
-            margin-bottom: 3rem;
-        }
-        
-        .category-title {
-            font-size: 1.4rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .download-grid {
+        .download-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
         .download-card {
-            background-color: #f8f9fa;
+            position: relative;
             border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
         
         .download-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
         }
         
-        .download-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #1a365d;
-            border-radius: 8px;
+        .card-content {
+            position: relative;
             display: flex;
             align-items: center;
+            height: 250px;
+        }
+        
+        .card-image {
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .download-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-info {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background-color: #1a365d;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
-            margin-bottom: 1rem;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
         }
         
-        .download-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: #fff;
-        }
-        
-        .download-info h3 {
-            font-size: 1.1rem;
-            color: #333;
+        .card-info h3 {
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
         
-        .download-info p {
+        .card-info p {
             font-size: 0.9rem;
-            color: #666;
+            opacity: 0.9;
             margin-bottom: 1rem;
-        }
-        
-        .download-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #999;
         }
         
         .download-btn {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background-color: #0066cc;
-            color: #fff;
+            background-color: #fff;
+            color: #1a365d;
             text-decoration: none;
             border-radius: 4px;
             font-size: 0.9rem;
+            font-weight: bold;
             transition: background-color 0.3s;
         }
         
         .download-btn:hover {
-            background-color: #0052a3;
-        }
-        
-        .file-size {
-            color: #999;
+            background-color: #f0f0f0;
         }
         
         @media (max-width: 768px) {
@@ -137,119 +135,108 @@
                 gap: 1rem;
             }
             
-            .download-grid {
+            .download-cards {
                 grid-template-columns: 1fr;
+            }
+            
+            .card-content {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .card-image {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .card-info {
+                position: relative;
+                width: 100%;
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="about.html">关于三越</a></li>
-                <li><a href="products.html">产品&服务</a></li>
-                <li><a href="news.html">新闻资讯</a></li>
-                <li><a href="contact.html">联系我们</a></li>
-            </ul>
-        </nav>
-    </header> -->
+    
     
     <main class="download-page">
         <div class="page-header">
             <div class="page-title">
                 <h1>资料查看</h1>
-                <p>Downloads</p>
+                <p></p>
             </div>
             <div class="logo">三越</div>
         </div>
         
-        <div class="download-categories">
-            <h2 class="category-title">产品手册</h2>
-            <div class="download-grid">
-                <div class="download-card">
-                    <div class="download-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
-                        </svg>
+        <div class="download-cards">
+            <div class="download-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20product%20catalog%20book%2C%20modern%20design%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="产品手册">
                     </div>
-                    <div class="download-info">
+                    <div class="card-info">
                         <h3>合成革用色浆</h3>
-                      
-                        <div class="download-meta">
-                            
-                            <a href="https://flbook.com.cn/c/fcECHBjYUr" class="download-btn">查看</a>
-                        </div>
+                        <p></p>
+                        <a href="https://flbook.com.cn/c/fcECHBjYUr" class="download-btn">查看</a>
                     </div>
                 </div>
-                
-                <div class="download-card">
-                    <div class="download-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
-                        </svg>
-                    </div>
-                    <div class="download-info">
-                        <h3>涂料用色浆</h3>
-
-                        <div class="download-meta">
-                            
-                            <a href="https://flbook.com.cn/c/i8iRtTM1Qq" class="download-btn">查看</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="download-card">
-                    <div class="download-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
-                        </svg>
-                    </div>
-                    <div class="download-info">
-                        <h3>合成革用助剂</h3>
-                      
-                        <div class="download-meta">
-                           
-                            <a href="https://flbook.com.cn/c/jCg2ozNGeR" class="download-btn">查看</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="download-card">
-                    <div class="download-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
-                        </svg>
-                    </div>
-                    <div class="download-info">
-                        <h3>涂料用助剂</h3>
-                      
-                        <div class="download-meta">
-                           
-                            <a href="https://flbook.com.cn/c/QxeOT1Npkf" class="download-btn">查看</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="download-card">
-                    <div class="download-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h6v6h6v10H6z"/>
-                        </svg>
-                    </div>
-                    <div class="download-info">
-                        <h3>汽车革用色浆</h3>
-                      
-                        <div class="download-meta">
-                           
-                            <a href="https://flbook.com.cn/c/FbymHw9Ygk" class="download-btn">查看</a>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
+            
+            <div class="download-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=technical%20documents%20and%20specifications%2C%20professional%20setting%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="技术文档">
+                    </div>
+                    <div class="card-info">
+                        <h3>涂料用色浆</h3>
+                        <p></p>
+                        <a href="https://flbook.com.cn/c/i8iRtTM1Qq" class="download-btn">查看</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="download-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=corporate%20brochure%20and%20certificates%2C%20business%20environment%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="公司资料">
+                    </div>
+                    <div class="card-info">
+                        <h3>合成革用助剂</h3>
+                        <p></p>
+                        <a href="https://flbook.com.cn/c/jCg2ozNGeR" class="download-btn">查看</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="download-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=safety%20data%20sheet%20document%2C%20industrial%20safety%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="MSDS安全数据表">
+                    </div>
+                    <div class="card-info">
+                        <h3>涂料用助剂</h3>
+                        <p></p>
+                        <a href="https://flbook.com.cn/c/QxeOT1Npkf" class="download-btn">查看</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="download-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=application%20guide%20book%20with%20examples%2C%20industrial%20application%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="应用指南">
+                    </div>
+                    <div class="card-info">
+                        <h3>汽车革用色浆</h3>
+                        <p></p>
+                        <a href="https://flbook.com.cn/c/FbymHw9Ygk" class="download-btn">查看</a>
+                    </div>
+                </div>
+            </div>
+            
+            
         </div>
-        
-       
     </main>
     
     <!-- <footer>
