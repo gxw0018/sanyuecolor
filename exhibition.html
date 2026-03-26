@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展会展示 - 三越</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于三越</a></li>
+                <li><a href="products.html">产品&服务</a></li>
+                <li><a href="exhibition.html">展会展示</a></li>
+                <li><a href="news.html">新闻资讯</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    
+    <main>
+        <section class="hero">
+            <h1>展会展示</h1>
+            <h2>回顾三越参与的重要行业展会</h2>
+            <p>江西三越高新材料有限公司积极参与国内外重要行业展会，展示最新产品和技术，与行业伙伴交流合作，不断推动行业发展。</p>
+        </section>
+        
+        <section class="exhibition-list">
+            <h2>展会回顾</h2>
+            <div id="exhibitionContainer">
+                <!-- 展会内容将通过JavaScript动态生成 -->
+                <div class="loading">加载中...</div>
+            </div>
+        </section>
+        
+        <script>
+            // 加载展会数据
+            function loadExhibitions() {
+                fetch('uploads/zhanhui.txt')
+                    .then(response => response.text())
+                    .then(text => {
+                        const container = document.getElementById('exhibitionContainer');
+                        const lines = text.trim().split('\n\n');
+                        
+                        if (lines.length === 0 || (lines.length === 1 && lines[0] === '')) {
+                            container.innerHTML = '<p class="no-exhibitions">暂无展会信息</p>';
+                            return;
+                        }
+                        
+                        container.innerHTML = '';
+                        
+                        lines.forEach((line, index) => {
+                            const parts = line.split('\n');
+                            if (parts.length < 4) return;
+                            
+                            const name = parts[0];
+                            const date = parts[1];
+                            const location = parts[2];
+                            const description = parts[3];
+                            const link = parts[4];
+                            const images = parts.slice(5);
+                            
+                            const exhibitionItem = document.createElement('div');
+                            exhibitionItem.className = 'exhibition-item';
+                            
+                            let imagesHtml = '';
+                            if (images && images.length > 0) {
+                                imagesHtml = `
+                                    <div class="exhibition-gallery">
+                                        <div class="gallery-grid">
+                                            ${images.map(img => `<img src="${img}" alt="${name}">`).join('')}
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                            
+                            exhibitionItem.innerHTML = `
+                                <div class="exhibition-info">
+                                    <h3>${name}</h3>
+                                    <p class="exhibition-date">${date}</p>
+                                    <p class="exhibition-location">${location}</p>
+                                    <p>${description}</p>
+                                    <p><a href="${link}" target="_blank">查看详情</a></p>
+                                    </p>
+                                </div>
+                                ${imagesHtml}
+                            `;
+                            
+                            container.appendChild(exhibitionItem);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('加载展会数据失败:', error);
+                        document.getElementById('exhibitionContainer').innerHTML = '<p class="no-exhibitions">加载展会数据失败</p>';
+                    });
+            }
+            
+            // 初始化
+            window.onload = function() {
+                loadExhibitions();
+            };
+        </script>
+        
+        <style>
+            .loading {
+                text-align: center;
+                padding: 3rem;
+                color: #666;
+            }
+            
+            .no-exhibitions {
+                text-align: center;
+                padding: 3rem;
+                color: #666;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+            }
+        </style>
+    </main>
+    
+    <!--  -->
+</body>
+</html>

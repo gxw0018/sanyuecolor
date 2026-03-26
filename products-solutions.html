@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品和解决方案</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 产品和解决方案页面样式 */
+        .products-solutions {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #333;
+        }
+        
+        .page-title {
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+                color: #333;
+            }
+            p {
+                font-size: 1rem;
+                color: #666;
+                text-transform: uppercase;
+            }
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .solution-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .solution-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-content {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 250px;
+        }
+        
+        .card-image {
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .solution-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-info {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background-color: #1a365d;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .card-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .products-solutions {
+                padding: 1rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .solution-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-content {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .card-image {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .card-info {
+                position: relative;
+                width: 100%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于三越</a></li>
+                <li><a href="products.html">产品&服务</a></li>
+                <li><a href="news.html">新闻资讯</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="products-solutions">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>产品和解决方案</h1>
+                <p>Products & Solutions</p>
+            </div>
+            <div class="logo">Stahl</div>
+        </div>
+        
+        <div class="solution-cards">
+            <div class="solution-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=person%20carrying%20brown%20leather%20bag%2C%20fashion%20style%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="皮革">
+                    </div>
+                    <div class="card-info">
+                        <h3>皮革</h3>
+                        <p>Leather</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="solution-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=person%20hiking%20on%20mountain%20trail%2C%20outdoor%20adventure%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="高性能涂料">
+                    </div>
+                    <div class="card-info">
+                        <h3>高性能涂料</h3>
+                        <p>Performance Coatings</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="solution-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=person%20inspecting%20printing%20quality%2C%20packaging%20industry%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="包装涂料">
+                    </div>
+                    <div class="card-info">
+                        <h3>包装涂料</h3>
+                        <p>Packaging Coatings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h4>三越</h4>
+                <p>为柔性材料打造创新可持续的特种涂料</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="about.html">关于三越</a>
+                <a href="products.html">产品&服务</a>
+                <a href="news.html">新闻资讯</a>
+                <a href="contact.html">联系我们</a>
+            </div>
+            <div class="footer-contact">
+                <h4>联系我们</h4>
+                <p>江西三越高新材料有限公司</p>
+                <p>地址：江西省吉安市永丰县工业西区</p>
+                <p>电话：0796-2272755</p>
+                <p>邮箱：19079640305@163.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 江西三越高新材料有限公司</p>
+            <p>赣ICP备2025057880号-2</p>
+        </div>
+    </footer>
+</body>
+</html>

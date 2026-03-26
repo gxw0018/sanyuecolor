@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 展会展示</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-header h1 {
+            color: #333;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #0066cc;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0052a3;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .exhibition-form {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .image-upload {
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .image-upload input {
+            display: none;
+        }
+        
+        .image-upload label {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #0066cc;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .image-upload label:hover {
+            background-color: #0052a3;
+        }
+        
+        .image-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .image-item {
+            position: relative;
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .image-item .remove-img {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .exhibition-list-admin {
+            margin-top: 3rem;
+        }
+        
+        .exhibition-item-admin {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .exhibition-info-admin {
+            flex: 1;
+        }
+        
+        .exhibition-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-header h2 {
+            color: #333;
+        }
+        
+        .close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于三越</a></li>
+                <li><a href="products.html">产品&服务</a></li>
+                <li><a href="exhibition.html">展会展示</a></li>
+                <li><a href="news.html">新闻资讯</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="admin.html">后台管理</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="admin-container">
+        <div class="admin-header">
+            <h1>展会管理</h1>
+            <button class="btn btn-primary" onclick="openAddModal()">添加展会</button>
+        </div>
+        
+        <div id="exhibitionList" class="exhibition-list-admin">
+            <!-- 展会列表将通过JavaScript动态生成 -->
+        </div>
+    </main>
+    
+    <!-- 添加/编辑展会的模态框 -->
+    <div id="exhibitionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">添加展会</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="exhibitionForm" onsubmit="saveExhibition(event)" enctype="multipart/form-data">
+                <input type="hidden" id="exhibitionId">
+                
+                <div class="form-group">
+                    <label for="exhibitionName">展会名称</label>
+                    <input type="text" id="exhibitionName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exhibitionDate">展会日期</label>
+                    <input type="text" id="exhibitionDate" placeholder="例如：2025年4月15-17日" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exhibitionLocation">展会地点</label>
+                    <input type="text" id="exhibitionLocation" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exhibitionDescription">展会描述</label>
+                    <textarea id="exhibitionDescription" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>展会图片</label>
+                    <div class="image-upload">
+                        <input type="file" id="imageUpload" accept="image/*" multiple>
+                        <label for="imageUpload">点击上传图片</label>
+                    </div>
+                    <div id="imagePreview" class="image-preview">
+                        <!-- 图片预览将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let exhibitions = [];
+        
+        // 加载展会列表
+        function loadExhibitions() {
+            fetch('uploads/zhanhui.txt')
+                .then(response => response.text())
+                .then(text => {
+                    const lines = text.trim().split('\n');
+                    exhibitions = [];
+                    
+                    lines.forEach((line, index) => {
+                        const parts = line.split(',');
+                        if (parts.length < 4) return;
+                        
+                        exhibitions.push({
+                            id: index + 1,
+                            name: parts[0],
+                            date: parts[1],
+                            location: parts[2],
+                            description: parts[3],
+                            images: parts.slice(4)
+                        });
+                    });
+                    
+                    renderExhibitionList();
+                })
+                .catch(error => {
+                    console.error('加载展会数据失败:', error);
+                    document.getElementById('exhibitionList').innerHTML = '<p>加载展会数据失败</p>';
+                });
+        }
+        
+        // 渲染展会列表
+        function renderExhibitionList() {
+            const exhibitionList = document.getElementById('exhibitionList');
+            exhibitionList.innerHTML = '';
+            
+            exhibitions.forEach(exhibition => {
+                const exhibitionItem = document.createElement('div');
+                exhibitionItem.className = 'exhibition-item-admin';
+                
+                exhibitionItem.innerHTML = `
+                    <div class="exhibition-info-admin">
+                        <h3>${exhibition.name}</h3>
+                        <p class="exhibition-date">${exhibition.date}</p>
+                        <p class="exhibition-location">${exhibition.location}</p>
+                        <p>${exhibition.description.substring(0, 100)}...</p>
+                    </div>
+                    <div class="exhibition-actions">
+                        <button class="btn btn-secondary" onclick="editExhibition(${exhibition.id})">编辑</button>
+                        <button class="btn btn-danger" onclick="deleteExhibition(${exhibition.id})">删除</button>
+                    </div>
+                `;
+                
+                exhibitionList.appendChild(exhibitionItem);
+            });
+        }
+        
+        // 打开添加展会模态框
+        function openAddModal() {
+            document.getElementById('modalTitle').textContent = '添加展会';
+            document.getElementById('exhibitionForm').reset();
+            document.getElementById('exhibitionId').value = '';
+            document.getElementById('imagePreview').innerHTML = '';
+            document.getElementById('exhibitionModal').style.display = 'block';
+        }
+        
+        // 打开编辑展会模态框
+        function editExhibition(id) {
+            const exhibition = exhibitions.find(ex => ex.id == id);
+            
+            if (exhibition) {
+                document.getElementById('modalTitle').textContent = '编辑展会';
+                document.getElementById('exhibitionId').value = exhibition.id;
+                document.getElementById('exhibitionName').value = exhibition.name;
+                document.getElementById('exhibitionDate').value = exhibition.date;
+                document.getElementById('exhibitionLocation').value = exhibition.location;
+                document.getElementById('exhibitionDescription').value = exhibition.description;
+                
+                // 显示图片预览
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.innerHTML = '';
+                
+                exhibition.images.forEach((image, index) => {
+                    const imageItem = document.createElement('div');
+                    imageItem.className = 'image-item';
+                    imageItem.innerHTML = `
+                        <img src="${image}" alt="展会图片">
+                        <button class="remove-img" onclick="removeImage(this)">×</button>
+                    `;
+                    imagePreview.appendChild(imageItem);
+                });
+                
+                document.getElementById('exhibitionModal').style.display = 'block';
+            }
+        }
+        
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('exhibitionModal').style.display = 'none';
+        }
+        
+        // 保存展会信息
+        function saveExhibition(event) {
+            event.preventDefault();
+            
+            const id = document.getElementById('exhibitionId').value;
+            const name = document.getElementById('exhibitionName').value;
+            const date = document.getElementById('exhibitionDate').value;
+            const location = document.getElementById('exhibitionLocation').value;
+            const description = document.getElementById('exhibitionDescription').value;
+            
+            // 获取图片
+            const imagePreview = document.getElementById('imagePreview');
+            const images = [];
+            
+            imagePreview.querySelectorAll('img').forEach(img => {
+                images.push(img.src);
+            });
+            
+            if (id) {
+                // 编辑现有展会
+                const index = exhibitions.findIndex(ex => ex.id == id);
+                if (index !== -1) {
+                    exhibitions[index] = {
+                        id: parseInt(id),
+                        name,
+                        date,
+                        location,
+                        description,
+                        images
+                    };
+                }
+            } else {
+                // 添加新展会
+                const newId = exhibitions.length > 0 ? Math.max(...exhibitions.map(ex => ex.id)) + 1 : 1;
+                exhibitions.push({
+                    id: newId,
+                    name,
+                    date,
+                    location,
+                    description,
+                    images
+                });
+            }
+            
+            // 保存到文件
+            saveToFile();
+        }
+        
+        // 保存到文件
+        function saveToFile() {
+            const content = exhibitions.map(ex => {
+                return [ex.name, ex.date, ex.location, ex.description, ...ex.images].join(',');
+            }).join('\n');
+            
+            // 创建下载链接
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'zhanhui.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            closeModal();
+            loadExhibitions();
+            alert('展会信息已更新，请将下载的zhanhui.txt文件替换到uploads目录下，然后刷新展会展示页面查看更改。');
+        }
+        
+        // 删除展会
+        function deleteExhibition(id) {
+            if (confirm('确定要删除这个展会吗？')) {
+                exhibitions = exhibitions.filter(ex => ex.id != id);
+                saveToFile();
+            }
+        }
+        
+        // 移除图片
+        function removeImage(element) {
+            element.parentElement.remove();
+        }
+        
+        // 处理图片上传
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const imagePreview = document.getElementById('imagePreview');
+            
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageItem = document.createElement('div');
+                    imageItem.className = 'image-item';
+                    imageItem.innerHTML = `
+                        <img src="${e.target.result}" alt="展会图片">
+                        <button class="remove-img" onclick="removeImage(this)">×</button>
+                    `;
+                    imagePreview.appendChild(imageItem);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+        
+        // 初始化
+        window.onload = function() {
+            loadExhibitions();
+        };
+        
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById('exhibitionModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
