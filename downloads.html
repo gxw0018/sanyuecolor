@@ -203,7 +203,7 @@
                             name = parts[0].trim();
                             name  = name.startsWith('http') ? name : 'Duploads/' + name;
                             const displayName = parts[1].trim();
-                            const icon = parts[2].trim();
+                            const icon = parts[2]==""? parts[2] : parts[2].trim();
 
                             const downloadCard = document.createElement('div');
                             downloadCard.className = 'download-card';
