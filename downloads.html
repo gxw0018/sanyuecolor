@@ -177,74 +177,75 @@
             <div class="logo">三越</div>
         </div>
         
-        <div class="download-cards">
-            <div class="download-card">
-                <div class="card-content">
-                    <div class="card-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20product%20catalog%20book%2C%20modern%20design%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="产品手册">
-                    </div>
-                    <div class="card-info">
-                        <h3>合成革用色浆</h3>
-                        <p></p>
-                        <a href="https://flbook.com.cn/c/fcECHBjYUr" class="download-btn">查看</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="download-card">
-                <div class="card-content">
-                    <div class="card-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=technical%20documents%20and%20specifications%2C%20professional%20setting%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="技术文档">
-                    </div>
-                    <div class="card-info">
-                        <h3>涂料用色浆</h3>
-                        <p></p>
-                        <a href="https://flbook.com.cn/c/i8iRtTM1Qq" class="download-btn">查看</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="download-card">
-                <div class="card-content">
-                    <div class="card-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=corporate%20brochure%20and%20certificates%2C%20business%20environment%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="公司资料">
-                    </div>
-                    <div class="card-info">
-                        <h3>合成革用助剂</h3>
-                        <p></p>
-                        <a href="https://flbook.com.cn/c/jCg2ozNGeR" class="download-btn">查看</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="download-card">
-                <div class="card-content">
-                    <div class="card-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=safety%20data%20sheet%20document%2C%20industrial%20safety%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="MSDS安全数据表">
-                    </div>
-                    <div class="card-info">
-                        <h3>涂料用助剂</h3>
-                        <p></p>
-                        <a href="https://flbook.com.cn/c/QxeOT1Npkf" class="download-btn">查看</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="download-card">
-                <div class="card-content">
-                    <div class="card-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=application%20guide%20book%20with%20examples%2C%20industrial%20application%2C%20high%20quality%20photography&image_size=landscape_16_9" alt="应用指南">
-                    </div>
-                    <div class="card-info">
-                        <h3>汽车革用色浆</h3>
-                        <p></p>
-                        <a href="https://flbook.com.cn/c/FbymHw9Ygk" class="download-btn">查看</a>
-                    </div>
-                </div>
-            </div>
-            
-            
+        <div class="download-cards" id="downloadCards">
+            <div class="loading">加载中...</div>
         </div>
+        
+        <script>
+            
+            
+            // 加载资料数据
+            function loadDownloads() {
+                fetch('uploads/ziliaochakan.txt')
+                    .then(response => response.text())
+                    .then(text => {
+                        const container = document.getElementById('downloadCards');
+                        files = text.trim().split('\n\n');
+                        if (files.length === 0) {
+                            container.innerHTML = '<p class="no-downloads">暂无资料文件</p>';
+                            return;
+                        }
+                        
+                        container.innerHTML = '';
+                        
+                        files.forEach((file, index) => {
+                            const parts = file.split('\n');
+                            const name = parts[0].trim();
+                            const displayName = parts[1].trim();
+                            const icon = parts[2].trim();
+
+                            const downloadCard = document.createElement('div');
+                            downloadCard.className = 'download-card';
+                            
+                            downloadCard.innerHTML = `
+                                <div class="card-content">
+                                    <div class="card-image">
+                                        <img src="${icon}" alt="${displayName}">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>${displayName}</h3>
+                                        <p></p>
+                                        <a href="Duploads/${name}" class="download-btn" target="_blank">查看</a>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            container.appendChild(downloadCard);
+                        });
+                });
+            }
+            
+            // 初始化
+            window.onload = function() {
+                loadDownloads();
+            };
+        </script>
+        
+        <style>
+            .loading {
+                text-align: center;
+                padding: 3rem;
+                color: #666;
+            }
+            
+            .no-downloads {
+                text-align: center;
+                padding: 3rem;
+                color: #666;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+            }
+        </style>
     </main>
     
     <!-- <footer>
