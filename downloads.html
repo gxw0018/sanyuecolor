@@ -200,7 +200,7 @@
                         
                         files.forEach((file, index) => {
                             const parts = file.split('\n');
-                            const name = parts[0].trim();
+                            name = parts[0].trim();
                             name  = name.startsWith('http') ? name : 'Duploads/' + name;
                             const displayName = parts[1].trim();
                             const icon = parts[2].trim();

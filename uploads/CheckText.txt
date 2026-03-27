@@ -1,3 +1,6 @@
 测试_加水印.pdf
 资料文件阿萨德
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
+
+汽车革用色浆2026-3月-RGB.pdf
+汽车革用色浆
