@@ -186,7 +186,7 @@
             
             // 加载资料数据
             function loadDownloads() {
-                fetch('uploads/ziliaochakan.txt')
+                fetch('uploads/CheckText.txt')
                     .then(response => response.text())
                     .then(text => {
                         const container = document.getElementById('downloadCards');
@@ -201,6 +201,7 @@
                         files.forEach((file, index) => {
                             const parts = file.split('\n');
                             const name = parts[0].trim();
+                            name  = name.startsWith('http') ? name : 'Duploads/' + name;
                             const displayName = parts[1].trim();
                             const icon = parts[2].trim();
 
@@ -215,7 +216,7 @@
                                     <div class="card-info">
                                         <h3>${displayName}</h3>
                                         <p></p>
-                                        <a href="Duploads/${name}" class="download-btn" target="_blank">查看</a>
+                                        <a href="${name}" class="download-btn" target="_blank">查看</a>
                                     </div>
                                 </div>
                             `;

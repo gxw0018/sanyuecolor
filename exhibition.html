@@ -70,7 +70,7 @@
                                 imagesHtml = `
                                     <div class="exhibition-gallery">
                                         <div class="gallery-grid">
-                                            ${images.map(img => `<img src="${img}" alt="${name}">`).join('')}
+                                            ${images.map(img => `<img src="${img.startsWith('http') ? img : 'Duploads/' + img}" alt="${name}">`).join('')}
                                         </div>
                                     </div>
                                 `;
@@ -79,8 +79,8 @@
                             exhibitionItem.innerHTML = `
                                 <div class="exhibition-info">
                                     <h3>${name}</h3>
-                                    <p class="exhibition-date">${date}</p>
-                                    <p class="exhibition-location">${location}</p>
+                                    <p class="exhibition-date">时间：${date}</p>
+                                    <p class="exhibition-location">地点：${location}</p>
                                     <p>${description}</p>
                                     <p><a href="${link}" target="_blank" style=" text-decoration: none;">查看详情</a></p>
                                     </p>
