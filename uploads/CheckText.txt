@@ -1,7 +1,20 @@
-测试_加水印.pdf
-资料文件阿萨德
+https://flbook.com.cn/c/fcECHBjYUr
+合成革用色浆
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
 
-汽车革用色浆2026-3月-RGB.pdf
+https://flbook.com.cn/c/i8iRtTM1Qq
+涂料用色浆
+https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
+
+https://flbook.com.cn/c/jCg2ozNGeR
+合成革用助剂
+https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
+
+https://flbook.com.cn/c/QxeOT1Npkf
+涂料用助剂
+https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
+
+https://flbook.com.cn/c/FbymHw9Ygk
 汽车革用色浆
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
+
