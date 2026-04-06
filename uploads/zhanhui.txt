@@ -13,9 +13,3 @@ https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=product%20displa
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=conference%20scene%20with%20speakers%20and%20audience%2C%20professional%20setting&image_size=square_hd
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20company%20banner%2C%20professional%20display&image_size=square_hd
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=business%20networking%20at%20conference%2C%20professional%20people%20talking&image_size=square_hd
-
-测试
-2025年3月20
-上海
-三越出席2025中国人造革合成革行业高质量发展大会，展示最新产品和技术。公司代表在大会上发表了主题演讲，分享了行业前沿技术和发展趋势。
-http://www.baidu.com
