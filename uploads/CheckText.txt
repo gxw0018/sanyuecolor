@@ -19,5 +19,5 @@ https://flbook.com.cn/c/FbymHw9Ygk
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
 
 https://flbook.com.cn/c/xIeeUZkNAm
-涂料用色浆2026年4月
+涂料用色浆
 https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exhibition%20booth%20with%20colorful%20materials%20display%2C%20professional%20setting%2C%20bright%20lighting&image_size=square_hd
