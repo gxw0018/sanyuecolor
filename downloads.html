@@ -204,10 +204,10 @@
                             const parts = file.split('\n');
                             name = parts[0].trim();
                             name  = name.startsWith('http') ? name : 'Duploads/' + name;
-                            displayName = parts[1].trim();
-                            displayName = displayName.startsWith('http') ? displayName : 'Duploads/' + displayName;
-                            const icon = parts[2]==""? parts[2] : parts[2].trim();
-
+                            const displayName = parts[1].trim();
+                            icon = parts[2]==""? parts[2] : parts[2].trim();
+                            icon = icon.startsWith('http') ? icon : 'Duploads/' + icon;
+                            
                             const downloadCard = document.createElement('div');
                             downloadCard.className = 'download-card';
                             
