@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料查看</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .download-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #333;
+        }
+        
+        .page-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .page-title p {
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .download-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .download-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-content {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 250px;
+        }
+        
+        .card-image {
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .download-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-info {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            min-width: 200px;
+            background-color: #1a365d;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            transform: skewX(-15deg);
+            margin-right: -28px;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .card-info h3,
+        .card-info p,
+        .card-info .download-btn {
+            transform: skewX(15deg);
+        }
+        
+        .card-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #fff;
+            color: #1a365d;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        @media (max-width: 768px) {
+            .download-page {
+                padding: 1rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .download-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-content {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .card-image {
+                width: 100%;
+                height: 150px;
+                overflow: hidden;
+            }
+            
+            .card-image img {
+                height: 200px;
+                object-fit: cover;
+            }
+            
+            .card-info {
+                position: relative;
+                width: 100%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <main class="download-page">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>资料查看</h1>
+                <p></p>
+            </div>
+            <div class="logo">三越</div>
+        </div>
+        
+        <div class="download-cards" id="downloadCards">
+            <div class="loading">加载中...</div>
+        </div>
+        
+        <script>
+            
+            
+            // 加载资料数据
+            function loadDownloads() {
+                fetch('uploads/CheckText.txt')
+                    .then(response => response.text())
+                    .then(text => {
+                        const container = document.getElementById('downloadCards');
+                        files = text.trim().split('\n\n');
+                        if (files.length === 0) {
+                            container.innerHTML = '<p class="no-downloads">暂无资料文件</p>';
+                            return;
+                        }
+                        
+                        container.innerHTML = '';
+                        
+                        files.forEach((file, index) => {
+                            const parts = file.split('\n');
+                            name = parts[0].trim();
+                            name  = name.startsWith('http') ? name : 'Duploads/' + name;
+                            const displayName = parts[1].trim();
+                            icon = parts[2]==""? parts[2] : parts[2].trim();
+                            icon = icon.startsWith('http') ? icon : 'Duploads/' + icon;
+                            
+                            const downloadCard = document.createElement('div');
+                            downloadCard.className = 'download-card';
+                            
+                            downloadCard.innerHTML = `
+                                <div class="card-content">
+                                    <div class="card-image">
+                                        <img src="${icon}" alt="${displayName}">
+                                    </div>
+                                    <div class="card-info">
+                                        <h3>${displayName}</h3>
+                                        <p></p>
+                                        <a href="${name}" class="download-btn" target="_blank">查看</a>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            container.appendChild(downloadCard);
+                        });
+                });
+            }
+            
+            // 初始化
+            window.onload = function() {
+                loadDownloads();
+            };
+        </script>
+        
+        <style>
+            .loading {
+                text-align: center;
+                padding: 3rem;
+                color: #666;
+            }
+            
+            .no-downloads {
+                text-align: center;
+                padding: 3rem;
+                color: #666;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+            }
+        </style>
+    </main>
+    
+    <!-- <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h4>三越</h4>
+                <p>为柔性材料打造创新可持续的特种涂料</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="about.html">关于三越</a>
+                <a href="products.html">产品&服务</a>
+                <a href="news.html">新闻资讯</a>
+                <a href="contact.html">联系我们</a>
+            </div>
+            <div class="footer-contact">
+                <h4>联系我们</h4>
+                <p>江西三越高新材料有限公司</p>
+                <p>地址：江西省吉安市永丰县工业西区</p>
+                <p>电话：0796-2272755</p>
+                <p>邮箱：19079640305@163.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 江西三越高新材料有限公司</p>
+            <p>赣ICP备2025057880号-2</p>
+        </div>
+    </footer> -->
+</body>
+</html>
