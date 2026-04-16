@@ -4,17 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>跳转中...</title>
-    
+    <style>
+        .container{
+            text-align:center;
+            margin-top:50px;
+            font-size:18px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-
+        正在安全跳转，请稍候...
     </div>
 
     <script>
-		const jumpUrl = "http://jxsy2025.gnway.org/sanyuegzh/DL.html";
-		window.location.href = jumpUrl;
-       
+        // 只跳转 1 次，失败不会循环
+        const jumpUrl = "http://jxsy2025.gnway.org/sanyuegzh/DL.html";
+        
+        // 检测是否已经跳转失败，避免死循环
+        if (!sessionStorage.getItem('hasJumped')) {
+            sessionStorage.setItem('hasJumped', 'true'); // 标记已跳转
+            window.location.href = jumpUrl;
+        } else {
+            document.querySelector('.container').innerHTML = "跳转失败，请手动访问：<br>" + jumpUrl;
+            sessionStorage.removeItem('hasJumped'); // 清除标记
+        }
     </script>
 </body>
 </html>
