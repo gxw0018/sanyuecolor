@@ -74,7 +74,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: transform 0.3s, filter 0.5s;
+            filter: blur(8px);
+        }
+        
+        .card-image img.loaded {
+            filter: blur(0);
         }
         
         .download-card:hover .card-image img {
@@ -204,9 +209,7 @@
                             return;
                         }
                         
-                        container.innerHTML = '';
-                        
-                        files.forEach((file, index) => {
+                        const cardsHtml = files.map((file, index) => {
                             const parts = file.split('\n');
                             name = parts[0].trim();
                             name  = name.startsWith('http') ? name : 'Duploads/' + name;
@@ -214,24 +217,23 @@
                             icon = parts[2]==""? parts[2] : parts[2].trim();
                             icon = icon.startsWith('http') ? icon : 'Duploads/' + icon;
                             
-                            const downloadCard = document.createElement('div');
-                            downloadCard.className = 'download-card';
-                            
-                            downloadCard.innerHTML = `
-                                <div class="card-content">
-                                    <div class="card-image">
-                                        <img src="${icon}" alt="${displayName}">
-                                    </div>
-                                    <div class="card-info">
-                                        <h3>${displayName}</h3>
-                                        <p></p>
-                                        <a href="${name}" class="download-btn" target="_blank">查看</a>
+                            return `
+                                <div class="download-card">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <img src="${icon}" alt="${displayName}" onload="this.classList.add('loaded')">
+                                        </div>
+                                        <div class="card-info">
+                                            <h3>${displayName}</h3>
+                                            <p></p>
+                                            <a href="${name}" class="download-btn" target="_blank">查看</a>
+                                        </div>
                                     </div>
                                 </div>
                             `;
-                            
-                            container.appendChild(downloadCard);
-                        });
+                        }).join('');
+                        
+                        container.innerHTML = cardsHtml;
                 });
             }
             
